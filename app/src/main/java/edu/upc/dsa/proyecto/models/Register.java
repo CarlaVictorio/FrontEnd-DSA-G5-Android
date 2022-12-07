@@ -2,20 +2,40 @@ package edu.upc.dsa.proyecto.models;
 
 public class Register {
 
-    String username;
+    String nombre;
     String password;
+    String email;
+    String pais;
 
-    public Register (String username, String password){
-        this.username=username;
+    public Register (String nombre, String password, String email, String pais){
+        this.nombre=nombre;
         this.password=password;
+        this.email = email;
+        this.pais = pais;
     }
 
-    public String getUsername() {
-        return username;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPais() {
+        return pais;
+    }
+
+    public void setPais(String pais) {
+        this.pais = pais;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String username) {
+        this.nombre = nombre;
     }
 
     public String getPassword() {
