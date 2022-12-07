@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import edu.upc.dsa.proyecto.api.Client;
 import edu.upc.dsa.proyecto.api.CookWithMeAPI;
@@ -17,8 +18,9 @@ public class MainActivity extends AppCompatActivity {
 
     Button salirBtn;
     Button tiendaBtn;
+    TextView textViewNombre;
     CookWithMeAPI gitHub;
-
+    String nombre;
     SharedPreferences sharedPref;
     SharedPreferences.Editor editor;
     private static final String SHARED_PREF_NAME = "datosLogIn";
@@ -33,11 +35,15 @@ public class MainActivity extends AppCompatActivity {
 
         salirBtn = (Button)findViewById(R.id.salirBtn);
         tiendaBtn = (Button)findViewById(R.id.tiendaBtn);
+        textViewNombre = (TextView)findViewById(R.id.textViewNombre);
+
         gitHub= Client.getClient().create(CookWithMeAPI.class);
 
-        sharedPref = getSharedPreferences("SHARED_PREF_NAME",Context.MODE_PRIVATE);
+        sharedPref = getSharedPreferences(SHARED_PREF_NAME,Context.MODE_PRIVATE);
         editor = sharedPref.edit();
-        Boolean activo = sharedPref.getBoolean(KEY_ACTIVO,false);
+        //Boolean activo = sharedPref.getBoolean(KEY_ACTIVO,false);
+        nombre = sharedPref.getString(KEY_NOMBRE,null);
+        textViewNombre.setText(nombre);
     }
 
     public void salirBtn(View v){
@@ -45,13 +51,11 @@ public class MainActivity extends AppCompatActivity {
         editor.commit();
         Intent login= new Intent (MainActivity.this, LogInActivity.class);
         startActivity(login);
-
     }
 
     public void tiendaBtn(View v){
         Intent tienda= new Intent (MainActivity.this, LogInActivity.class);
         startActivity(tienda);
-
     }
 
 }

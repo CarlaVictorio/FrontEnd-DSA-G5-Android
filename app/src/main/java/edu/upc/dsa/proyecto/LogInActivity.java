@@ -51,14 +51,13 @@ public class LogInActivity extends AppCompatActivity{
                 Log.d("RECIPE",""+response.code());
 
                 if(response.code() == 201){
-                    Toast.makeText(getApplicationContext(),"Log In correcto", Toast.LENGTH_SHORT).show();
-
+                    editor = sharedPref.edit();
                     editor.putString(KEY_NOMBRE, user);
-                    editor.putBoolean(KEY_ACTIVO,true);
+                    //editor.putBoolean(KEY_ACTIVO,true);
                     editor.apply();
-
                     Intent main= new Intent (LogInActivity.this, MainActivity.class);
                     startActivity(main);
+                    Toast.makeText(getApplicationContext(),"Log In correcto", Toast.LENGTH_SHORT).show();
                 }
                 else if (response.code()==404){
                     Toast.makeText(getApplicationContext(),"Contraseña/usuario incorrectos", Toast.LENGTH_SHORT).show();
@@ -97,7 +96,6 @@ public class LogInActivity extends AppCompatActivity{
 
         gitHub= Client.getClient().create(CookWithMeAPI.class);
         sharedPref = getSharedPreferences(SHARED_PREF_NAME,Context.MODE_PRIVATE);
-        editor = sharedPref.edit();
 
     }
 

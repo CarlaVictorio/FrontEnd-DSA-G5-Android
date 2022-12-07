@@ -16,9 +16,10 @@ import edu.upc.dsa.proyecto.models.LogIn;
 public class SplashScreenActivity extends AppCompatActivity {
 
     SharedPreferences sharedPref;
+    String nombre;
     private static final String SHARED_PREF_NAME = "datosLogIn";
     private static final String KEY_NOMBRE = "nombre";
-    private static final String KEY_ACTIVO = "activo";
+    //private static final String KEY_ACTIVO = "activo";
 
 
     @Override
@@ -26,10 +27,11 @@ public class SplashScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
-        sharedPref = getSharedPreferences("SHARED_PREF_NAME",Context.MODE_PRIVATE);
-        Boolean activo = sharedPref.getBoolean(KEY_ACTIVO,false);
+        sharedPref = getSharedPreferences(SHARED_PREF_NAME,Context.MODE_PRIVATE);
+        //Boolean activo = sharedPref.getBoolean(KEY_ACTIVO,false);
+        nombre = sharedPref.getString(KEY_NOMBRE,null);
 
-        if (activo==true){
+        if (nombre!=null){
             Toast.makeText(getApplicationContext(),"USUARIO ACTIVO", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(SplashScreenActivity.this,MainActivity.class);
             startActivity(intent);
@@ -40,10 +42,4 @@ public class SplashScreenActivity extends AppCompatActivity {
             startActivity(intent2);
         }
     }
-
-
-
-
-
-
 }
