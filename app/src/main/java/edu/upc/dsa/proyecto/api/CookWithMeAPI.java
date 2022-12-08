@@ -1,5 +1,8 @@
 package edu.upc.dsa.proyecto.api;
 
+import java.util.List;
+
+import edu.upc.dsa.proyecto.models.Ingrediente;
 import edu.upc.dsa.proyecto.models.Jugador;
 import edu.upc.dsa.proyecto.models.LogIn;
 import edu.upc.dsa.proyecto.models.Register;
@@ -15,6 +18,9 @@ public interface CookWithMeAPI { //MyService
 
     @POST("/dsaApp/jugador/Register")
     Call<Void> register(@Body Register register);
+
+    @GET("/dsaApp/ingrediente/getAllIngredientes")
+    Call<List<Ingrediente>> getAllIngredientes();
 
 
 }

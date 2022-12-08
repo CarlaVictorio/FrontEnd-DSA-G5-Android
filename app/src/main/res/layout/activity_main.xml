@@ -11,11 +11,11 @@
         android:id="@+id/salirBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginStart="228dp"
+        android:layout_marginTop="652dp"
         android:backgroundTint="#F4511E"
-        android:text="SALIR"
         android:onClick="salirBtn"
+        android:text="CERRAR SESIÓN"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -23,22 +23,23 @@
         android:id="@+id/tiendaBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="150dp"
-        android:layout_marginTop="150dp"
+        android:layout_marginStart="292dp"
+        android:layout_marginTop="100dp"
         android:backgroundTint="#F4511E"
-        android:text="TIENDA"
         android:onClick="tiendaBtn"
+        android:text="TIENDA"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/salirBtn" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textViewNombre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="100dp"
         android:text="TextView"
-        android:textSize="24sp"
+        android:textColor="#000000"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tiendaBtn" />
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

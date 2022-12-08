@@ -25,9 +25,8 @@ public class MainActivity extends AppCompatActivity {
     SharedPreferences.Editor editor;
     private static final String SHARED_PREF_NAME = "datosLogIn";
     private static final String KEY_NOMBRE = "nombre";
-    private static final String KEY_ACTIVO = "activo";
+    //private static final String KEY_ACTIVO = "activo";
 
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +42,8 @@ public class MainActivity extends AppCompatActivity {
         editor = sharedPref.edit();
         //Boolean activo = sharedPref.getBoolean(KEY_ACTIVO,false);
         nombre = sharedPref.getString(KEY_NOMBRE,null);
-        textViewNombre.setText(nombre);
+        String texto="Bienvenid@ " + nombre;
+        textViewNombre.setText(texto);
     }
 
     public void salirBtn(View v){
