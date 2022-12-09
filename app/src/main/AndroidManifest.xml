@@ -31,7 +31,14 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".TiendaActivity"
+            android:name=".IngredientesActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".UtensiliosActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

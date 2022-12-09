@@ -6,10 +6,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,14 +24,12 @@ import retrofit2.Response;
 
 public class LogInActivity extends AppCompatActivity{
 
-    TextView textViewRegister;
-    TextView textViewInicioSesion;
+    TextView textViewRegister,textViewInicioSesion;
+    EditText editTextName, editTextPassword;
 
-    EditText editTextName;
-    EditText editTextPassword;
+    Button registerBtn, logInBtn;
 
-    Button registerBtn;
-    Button logInBtn;
+    ProgressBar progressBar3;
 
     CookWithMeAPI gitHub;
     SharedPreferences sharedPref;
@@ -39,12 +39,11 @@ public class LogInActivity extends AppCompatActivity{
     private static final String KEY_NOMBRE = "nombre";
     private static final String KEY_ACTIVO = "activo";
 
-
     public void logInBtn(View v) {
 
         String user = editTextName.getText().toString();
         String password = editTextPassword.getText().toString();
-
+        progressBar3.setVisibility(View.VISIBLE);
         gitHub.logIn(new edu.upc.dsa.proyecto.models.LogIn(user,password)).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
@@ -71,7 +70,9 @@ public class LogInActivity extends AppCompatActivity{
                 Log.d("RECIPE",msg);
                 Toast.makeText(getApplicationContext(),"msg", Toast.LENGTH_SHORT).show();
             }
+
         });
+        progressBar3.setVisibility(View.GONE);
         Log.d("RECIPE", "end login");
 
     }
@@ -96,6 +97,9 @@ public class LogInActivity extends AppCompatActivity{
 
         gitHub= Client.getClient().create(CookWithMeAPI.class);
         sharedPref = getSharedPreferences(SHARED_PREF_NAME,Context.MODE_PRIVATE);
+        progressBar3 = (ProgressBar)findViewById(R.id.progressBar3);
+        progressBar3.setVisibility(View.INVISIBLE);
+
 
     }
 

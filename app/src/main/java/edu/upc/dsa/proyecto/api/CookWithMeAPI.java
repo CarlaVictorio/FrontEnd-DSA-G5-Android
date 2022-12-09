@@ -6,6 +6,7 @@ import edu.upc.dsa.proyecto.models.Ingrediente;
 import edu.upc.dsa.proyecto.models.Jugador;
 import edu.upc.dsa.proyecto.models.LogIn;
 import edu.upc.dsa.proyecto.models.Register;
+import edu.upc.dsa.proyecto.models.Utensilio;
 import retrofit2.Call;
 import retrofit2.http.*;
 
@@ -22,5 +23,6 @@ public interface CookWithMeAPI { //MyService
     @GET("/dsaApp/ingrediente/getAllIngredientes")
     Call<List<Ingrediente>> getAllIngredientes();
 
-
+    @GET("/dsaApp/utensilio/getAllUtensilios")
+    Call<List<Utensilio>> getAllUtensilios();
 }

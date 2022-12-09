@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#FEBC59"
     android:backgroundTint="#FEBC59"
-    tools:context=".TiendaActivity">
+    tools:context=".UtensiliosActivity">
 
     <Button
         android:id="@+id/volverBtn"
@@ -20,16 +20,32 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <android.support.v4.widget.SwipeRefreshLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/my_swipe_refresh"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_width="92dp"
+        android:layout_height="146dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/my_recycler_view"
-        android:layout_width="409dp"
-        android:layout_height="651dp"
+        android:layout_width="404dp"
+        android:layout_height="611dp"
         android:layout_marginStart="1dp"
         android:layout_marginTop="80dp"
         app:layout_constraintStart_toStartOf="parent"

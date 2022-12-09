@@ -1,7 +1,5 @@
 package edu.upc.dsa.proyecto;
-import java.util.ArrayList;
-import java.util.List;
-import android.support.v7.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -9,11 +7,15 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import edu.upc.dsa.proyecto.models.Ingrediente;
+import androidx.recyclerview.widget.RecyclerView;
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
+import java.util.ArrayList;
+import java.util.List;
+import edu.upc.dsa.proyecto.models.Utensilio;
 
-    private List<Ingrediente> listaIngredientes;
+public class MyAdapterUtensilios extends RecyclerView.Adapter<MyAdapterUtensilios.ViewHolder> {
+
+    private List<Utensilio> listaUtensilios;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -21,46 +23,46 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder { // inner class , se encarga de guardar las referencias
         // each data item is just a string in this case
-        public TextView TextViewNombreIngrediente;
+        public TextView TextViewNombreUtensilio;
         public ImageView icon;
         public View layout;
 
         public ViewHolder(View v) { //le pasamos la vista reciclada y nos la guardamos
             super(v);
             layout = v;
-            TextViewNombreIngrediente = (TextView) v.findViewById(R.id.nombreIngrediente);
+            TextViewNombreUtensilio = (TextView) v.findViewById(R.id.nombreObjeto);
             icon = (ImageView) v.findViewById(R.id.icon);
         }
     }
 
-    public void setData(List<Ingrediente> myDataset) { //muestro los contributors que me llegan
-        listaIngredientes = myDataset;
+    public void setData(List<Utensilio> myDataset) { //muestro los contributors que me llegan
+        listaUtensilios = myDataset;
         notifyDataSetChanged(); //avisamos al android que algo ha cambiado
     }
 
-    public void add(int position, Ingrediente item) {
-        listaIngredientes.add(position, item);
+    public void add(int position, Utensilio item) {
+        listaUtensilios.add(position, item);
         notifyItemInserted(position); //avisamos al android de que ha cambiado la posición
     }
 
     public void remove(int position) {
-        listaIngredientes.remove(position);
+        listaUtensilios.remove(position);
         notifyItemRemoved(position); //avisamos que hemos eliminado en esa posicion
     }
 
-    public MyAdapter() {
-        listaIngredientes = new ArrayList<>();
+    public MyAdapterUtensilios() {
+        listaUtensilios = new ArrayList<>();
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public MyAdapter(List<Ingrediente> myDataset) {
-        listaIngredientes = myDataset;
+    public MyAdapterUtensilios(List<Utensilio> myDataset) {
+        listaUtensilios = myDataset;
     }
 
     // Create new views (invoked by the layout manager)
     @Override
-    public MyAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, //onCreate al hacer scroll
-                                                   int viewType) {
+    public MyAdapterUtensilios.ViewHolder onCreateViewHolder(ViewGroup parent, //onCreate al hacer scroll
+                                                             int viewType) {
         // create a new view, convierte xml en layout
         LayoutInflater inflater = LayoutInflater.from(
                 parent.getContext());
@@ -77,10 +79,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
 
-        Ingrediente c = listaIngredientes.get(position); //me guardo la posición
-        final String name = c.nombreIngrediente; //recupero el login del contributor
-        holder.TextViewNombreIngrediente.setText(name);
-        holder.TextViewNombreIngrediente.setOnClickListener(new OnClickListener() {
+        Utensilio c = listaUtensilios.get(position); //me guardo la posición
+        final String name = c.nombreUtensilio; //recupero el login del contributor
+        holder.TextViewNombreUtensilio.setText(name);
+        holder.TextViewNombreUtensilio.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) { //relaciono el holder a un evento para que haga una acción, cuando me cliques, borrame
                 remove(holder.getAdapterPosition());
@@ -97,7 +99,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return listaIngredientes.size();
+        return listaUtensilios.size();
     }
 
 }

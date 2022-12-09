@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="228dp"
-        android:layout_marginTop="652dp"
+        android:layout_marginTop="564dp"
         android:backgroundTint="#F4511E"
         android:onClick="salirBtn"
         android:text="CERRAR SESIÓN"
@@ -20,14 +20,26 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/tiendaBtn"
+        android:id="@+id/ingredientesBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="292dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginStart="236dp"
+        android:layout_marginTop="152dp"
         android:backgroundTint="#F4511E"
-        android:onClick="tiendaBtn"
-        android:text="TIENDA"
+        android:onClick="ingredientesBtn"
+        android:text="INGREDIENTES"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/utensiliosBtn"
+        android:layout_width="144dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="232dp"
+        android:layout_marginTop="220dp"
+        android:backgroundTint="#F4511E"
+        android:onClick="utensiliosBtn"
+        android:text="UTENSILIOS"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

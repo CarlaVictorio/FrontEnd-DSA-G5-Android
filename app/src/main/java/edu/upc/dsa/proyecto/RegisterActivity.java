@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import edu.upc.dsa.proyecto.api.Client;
@@ -25,6 +26,7 @@ public class RegisterActivity extends AppCompatActivity {
     EditText editTextPais;
     Button guardarBtn;
     Button volverBtn;
+    ProgressBar progressBar4;
     CookWithMeAPI gitHub;
 
     @Override
@@ -39,6 +41,9 @@ public class RegisterActivity extends AppCompatActivity {
         guardarBtn = (Button)findViewById(R.id.guardarBtn);
         volverBtn = (Button)findViewById(R.id.volverBtn);
         gitHub= Client.getClient().create(CookWithMeAPI.class);
+        progressBar4 = (ProgressBar)findViewById(R.id.progressBar4);
+        progressBar4.setVisibility(View.INVISIBLE);
+
     }
     public void volverBtn(View v){
         //Volver a logIn Activity
@@ -51,7 +56,7 @@ public class RegisterActivity extends AppCompatActivity {
         String password = editTextPasswordReg.getText().toString();
         String email = editTextEmail.getText().toString();
         String pais = editTextPais.getText().toString();
-
+        progressBar4.setVisibility(View.VISIBLE);
         gitHub.register(new Register(nombre,password,email,pais)).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
@@ -59,6 +64,8 @@ public class RegisterActivity extends AppCompatActivity {
 
                 if(response.code() == 201){
                     Toast.makeText(getApplicationContext(),"Usuario registrado", Toast.LENGTH_SHORT).show();
+                    Intent logIn= new Intent (RegisterActivity.this, LogInActivity.class);
+                    startActivity(logIn);
                 }
 
                 else if (response.code()==404){
@@ -77,6 +84,7 @@ public class RegisterActivity extends AppCompatActivity {
 
             }
         });
+        progressBar4.setVisibility(View.GONE);
         Log.d("RECIPE", "end login");
 
     }

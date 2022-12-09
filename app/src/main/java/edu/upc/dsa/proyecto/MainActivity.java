@@ -1,14 +1,15 @@
 package edu.upc.dsa.proyecto;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.loader.app.LoaderManager;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import edu.upc.dsa.proyecto.api.Client;
@@ -16,8 +17,7 @@ import edu.upc.dsa.proyecto.api.CookWithMeAPI;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button salirBtn;
-    Button tiendaBtn;
+    Button salirBtn, ingredientesBtn, utensiliosBtn;
     TextView textViewNombre;
     CookWithMeAPI gitHub;
     String nombre;
@@ -27,15 +27,16 @@ public class MainActivity extends AppCompatActivity {
     private static final String KEY_NOMBRE = "nombre";
     //private static final String KEY_ACTIVO = "activo";
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         salirBtn = (Button)findViewById(R.id.salirBtn);
-        tiendaBtn = (Button)findViewById(R.id.tiendaBtn);
+        ingredientesBtn = (Button)findViewById(R.id.ingredientesBtn);
+        utensiliosBtn = (Button)findViewById(R.id.utensiliosBtn);
         textViewNombre = (TextView)findViewById(R.id.textViewNombre);
-
         gitHub= Client.getClient().create(CookWithMeAPI.class);
 
         sharedPref = getSharedPreferences(SHARED_PREF_NAME,Context.MODE_PRIVATE);
@@ -44,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
         nombre = sharedPref.getString(KEY_NOMBRE,null);
         String texto="Bienvenid@ " + nombre;
         textViewNombre.setText(texto);
+
+
     }
 
     public void salirBtn(View v){
@@ -53,9 +56,13 @@ public class MainActivity extends AppCompatActivity {
         startActivity(login);
     }
 
-    public void tiendaBtn(View v){
-        Intent tienda= new Intent (MainActivity.this, LogInActivity.class);
-        startActivity(tienda);
+    public void ingredientesBtn(View v){
+        Intent tienda1= new Intent (MainActivity.this, IngredientesActivity.class);
+        startActivity(tienda1);
+    }
+    public void utensiliosBtn(View v){
+        Intent tienda2= new Intent (MainActivity.this, UtensiliosActivity.class);
+        startActivity(tienda2);
     }
 
 }
