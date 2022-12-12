@@ -21,7 +21,7 @@ public class MyAdapterIngredientes extends RecyclerView.Adapter<MyAdapterIngredi
 
     public class ViewHolder extends RecyclerView.ViewHolder { // inner class , se encarga de guardar las referencias
         // each data item is just a string in this case
-        public TextView TextViewNombreIngrediente;
+        public TextView TextViewNombreIngrediente, TextViewPrecioIngrediente, TextViewNivelIngrediente;
         public ImageView icon;
         public View layout;
 
@@ -29,6 +29,8 @@ public class MyAdapterIngredientes extends RecyclerView.Adapter<MyAdapterIngredi
             super(v);
             layout = v;
             TextViewNombreIngrediente = (TextView) v.findViewById(R.id.nombreObjeto);
+            TextViewPrecioIngrediente = (TextView) v.findViewById(R.id.precioObjeto);
+            TextViewNivelIngrediente = (TextView) v.findViewById(R.id.nivelObjeto);
             icon = (ImageView) v.findViewById(R.id.icon);
         }
     }
@@ -86,6 +88,25 @@ public class MyAdapterIngredientes extends RecyclerView.Adapter<MyAdapterIngredi
                 remove(holder.getAdapterPosition());
             }
         });
+
+        final double precio = c.precioIngrediente; //recupero el login del contributor
+        holder.TextViewPrecioIngrediente.setText(toString().valueOf(precio) + "€");
+        holder.TextViewPrecioIngrediente.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) { //relaciono el holder a un evento para que haga una acción, cuando me cliques, borrame
+                remove(holder.getAdapterPosition());
+            }
+        });
+
+        final double nivel = c.nivelDesbloqueoIngrediente; //recupero el login del contributor
+        holder.TextViewNivelIngrediente.setText("Nivel: "+ toString().valueOf(nivel));
+        holder.TextViewNivelIngrediente.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) { //relaciono el holder a un evento para que haga una acción, cuando me cliques, borrame
+                remove(holder.getAdapterPosition());
+            }
+        });
+
         /* //IMAGENES
         GlideApp.with(holder.icon.getContext())
                 .load(c.avatar_url) //url que quiero cargar

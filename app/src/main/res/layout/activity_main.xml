@@ -23,7 +23,7 @@
         android:id="@+id/ingredientesBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="236dp"
+        android:layout_marginStart="232dp"
         android:layout_marginTop="152dp"
         android:backgroundTint="#F4511E"
         android:onClick="ingredientesBtn"

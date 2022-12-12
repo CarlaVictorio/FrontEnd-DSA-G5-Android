@@ -24,6 +24,7 @@ public class MyAdapterUtensilios extends RecyclerView.Adapter<MyAdapterUtensilio
     public class ViewHolder extends RecyclerView.ViewHolder { // inner class , se encarga de guardar las referencias
         // each data item is just a string in this case
         public TextView TextViewNombreUtensilio;
+        public TextView TextViewPrecioUtensilio;
         public ImageView icon;
         public View layout;
 
@@ -31,6 +32,7 @@ public class MyAdapterUtensilios extends RecyclerView.Adapter<MyAdapterUtensilio
             super(v);
             layout = v;
             TextViewNombreUtensilio = (TextView) v.findViewById(R.id.nombreObjeto);
+            TextViewPrecioUtensilio = (TextView) v.findViewById(R.id.precioObjeto);
             icon = (ImageView) v.findViewById(R.id.icon);
         }
     }
@@ -88,6 +90,16 @@ public class MyAdapterUtensilios extends RecyclerView.Adapter<MyAdapterUtensilio
                 remove(holder.getAdapterPosition());
             }
         });
+
+        final double precio = c.precioUtensilio; //recupero el login del contributor
+        holder.TextViewPrecioUtensilio.setText(toString().valueOf(precio)+" €");
+        holder.TextViewPrecioUtensilio.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) { //relaciono el holder a un evento para que haga una acción, cuando me cliques, borrame
+                remove(holder.getAdapterPosition());
+            }
+        });
+
         /* //IMAGENES
         GlideApp.with(holder.icon.getContext())
                 .load(c.avatar_url) //url que quiero cargar
