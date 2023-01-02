@@ -1,42 +1,44 @@
 package edu.upc.dsa.proyecto.models;
 
 public class Utensilio {
-/*
-    public final String nombreUtensilio;
-    public Utensilio(String nombreUtensilio) {
-        this.nombreUtensilio = nombreUtensilio;
 
-    }
- */
-    public String idUtensilio;
-    public String nombreUtensilio;
-    public double precioUtensilio;
-    public int tiempoNivel1;
-    public int tiempoNivel2;
-    public int tiempoNivel3;
+    public int id;
+    public String nombre;
+    public double precio;
+    public int tiempoNivel1, tiempoNivel2, tiempoNivel3;
+    public String urlImagen;
 
-    public Utensilio (String nombreUtensilio, int tiempoNivel1, int tiempoNivel2, int tiempoNivel3, double precioUtensilio) {
-        this.setNombreUtensilio(nombreUtensilio);
+    public Utensilio (String nombreUtensilio, int idUtensilio, int tiempoNivel1, int tiempoNivel2, int tiempoNivel3, double precioUtensilio, String imagenUtensilio) {
+        this.setNombre(nombreUtensilio);
+        this.setId(idUtensilio);
         this.setTiempoNivel1(tiempoNivel1);
         this.setTiempoNivel2(tiempoNivel2);
         this.setTiempoNivel3(tiempoNivel3);
-        this.setPrecioUtensilio(precioUtensilio);
+        this.setPrecio(precioUtensilio);
+        this.setUrlImagen(imagenUtensilio);
+    }
+    public String getUrlImagen() {
+        return urlImagen;
     }
 
-    public String getIdUtensilio() {
-        return idUtensilio;
+    public void setUrlImagen(String imagen) {
+        this.urlImagen = imagen;
     }
 
-    public void setIdUtensilio(String idUtensilio) {
-        this.idUtensilio = idUtensilio;
+    public int getId() {
+        return id;
     }
 
-    public String getNombreUtensilio() {
-        return nombreUtensilio;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setNombreUtensilio(String nombreUtensilio) {
-        this.nombreUtensilio = nombreUtensilio;
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public int getTiempoNivel1() {
@@ -63,12 +65,12 @@ public class Utensilio {
         this.tiempoNivel3 = tiempoNivel3;
     }
 
-    public double getPrecioUtensilio() {
-        return precioUtensilio;
+    public double getPrecio() {
+        return precio;
     }
 
-    public void setPrecioUtensilio(double precioUtensilio) {
-        this.precioUtensilio = precioUtensilio;
+    public void setPrecio(double precio) {
+        this.precio = precio;
     }
 
 }

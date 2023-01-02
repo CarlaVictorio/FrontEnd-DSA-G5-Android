@@ -1,8 +1,11 @@
 package edu.upc.dsa.proyecto;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -17,7 +20,9 @@ import java.util.List;
 
 import edu.upc.dsa.proyecto.api.Client;
 import edu.upc.dsa.proyecto.api.CookWithMeAPI;
+import edu.upc.dsa.proyecto.models.Ingrediente;
 import edu.upc.dsa.proyecto.models.Utensilio;
+import edu.upc.dsa.proyecto.models.UtensiliosComprados;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -28,8 +33,16 @@ public class UtensiliosActivity extends AppCompatActivity {
     private MyAdapterUtensilios adapter;
     private RecyclerView.LayoutManager layoutManager;
     private SwipeRefreshLayout swipeRefreshLayout;
+    public int idJugador;
     CookWithMeAPI gitHub;
     ProgressBar progressBar;
+    List<UtensiliosComprados> utensiliosComprados;
+
+    SharedPreferences sharedPref;
+    SharedPreferences.Editor editor;
+    private static final String SHARED_PREF_NAME = "datosLogIn";
+    private static final String KEY_NOMBRE = "nombre";
+    private static final String KEY_ID = "id";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +58,8 @@ public class UtensiliosActivity extends AppCompatActivity {
         // use a linear layout manager
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-
+        sharedPref = getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        idJugador = Integer.parseInt(sharedPref.getString(KEY_ID,null));
         // define an adapter
         adapter = new MyAdapterUtensilios();
         recyclerView.setAdapter(adapter);
@@ -53,8 +67,8 @@ public class UtensiliosActivity extends AppCompatActivity {
         //define progressbar
         progressBar = (ProgressBar)findViewById(R.id.progressBar);
 
-
         doApiCall(null); //hace las llamadas
+        doApiCallUtensiliosComprados();
 
         // Manage swipe on items, controla los movimientos
         ItemTouchHelper.SimpleCallback simpleItemTouchCallback =
@@ -81,6 +95,30 @@ public class UtensiliosActivity extends AppCompatActivity {
         );
 
     }
+    private void doApiCallUtensiliosComprados() {
+
+        progressBar.setVisibility(View.VISIBLE);
+        Call<List<UtensiliosComprados>> call = gitHub.getUtensiliosComprados(idJugador);
+        Log.d("idJugador", String.valueOf(idJugador));
+        call.enqueue(new Callback<List<UtensiliosComprados>>() {
+            @Override
+            public void onResponse(Call<List<UtensiliosComprados>> call, Response<List<UtensiliosComprados>> response) {
+                // set the results to the adapter
+                utensiliosComprados=response.body();
+                adapter.getUtensiliosComprados(utensiliosComprados);
+                adapter.setIdJugador(idJugador);
+                for(UtensiliosComprados i : utensiliosComprados){
+                    Log.d("RESPUESTA", String.valueOf(i.getIdUtensilio()));
+                }
+            }
+            @Override
+            public void onFailure(Call<List<UtensiliosComprados>> call, Throwable t) { //error en las comunicaciones
+                String msg = "Error in retrofit: "+t.toString();
+                Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG);
+            }
+        });
+        progressBar.setVisibility(View.GONE);
+    }
 
     private void doApiCall(SwipeRefreshLayout swipeRefreshLayout) {
         Call<List<Utensilio>> call = gitHub.getAllUtensilios();
@@ -105,7 +143,7 @@ public class UtensiliosActivity extends AppCompatActivity {
     }
 
     public void volverBtn(View v){
-        Intent main= new Intent (UtensiliosActivity.this, MainActivity.class);
+        Intent main= new Intent (UtensiliosActivity.this, TiendaActivity.class);
         startActivity(main);
     }
 

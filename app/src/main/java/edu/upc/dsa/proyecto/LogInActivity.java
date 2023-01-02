@@ -37,7 +37,6 @@ public class LogInActivity extends AppCompatActivity{
 
     private static final String SHARED_PREF_NAME = "datosLogIn";
     private static final String KEY_NOMBRE = "nombre";
-    private static final String KEY_ACTIVO = "activo";
 
     public void logInBtn(View v) {
 
@@ -52,7 +51,6 @@ public class LogInActivity extends AppCompatActivity{
                 if(response.code() == 201){
                     editor = sharedPref.edit();
                     editor.putString(KEY_NOMBRE, user);
-                    //editor.putBoolean(KEY_ACTIVO,true);
                     editor.apply();
                     Intent main= new Intent (LogInActivity.this, MainActivity.class);
                     startActivity(main);

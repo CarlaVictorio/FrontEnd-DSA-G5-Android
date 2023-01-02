@@ -3,44 +3,71 @@ package edu.upc.dsa.proyecto.models;
 
 public class Jugador {
 
+    private int id;
+    private String nombre;
+    private String password;
+    private String email;
+    private String pais;
+    private double dinero;
 
-        String id;
-        String nombre;
-        String password;
+    public Jugador() {
+    }
 
-        public Jugador() {
+    public Jugador (String nombre, String password, String email, String pais, double dinero) {
+        this();
+        this.setNombre(nombre);
+        this.setPassword(password);
+        this.setEmail(email);
+        this.setPais(pais);
+        this.setDinero(dinero);
+    }
 
-        }
+    public int getId() {
+        return id;
+    }
 
-        public Jugador (String nombre, String password) {
-            this();
-            this.setNombre(nombre);
-            this.setPassword(password);
-        }
+    public void setId(int id) {
+        this.id = id;
+    }
+    public double getDinero() {
+        return dinero;
+    }
 
-        public String  getId() {
-            return id;
-        }
+    public void setDinero(double dinero) {
+        this.dinero = dinero;
+    }
 
-        public void setId(String id) {
-            this.id = id;
-        }
+    public String getEmail() {
+        return email;
+    }
 
-        public String getNombre() {
-            return nombre;
-        }
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-        public void setNombre(String nombre) {
-            this.nombre = nombre;
-        }
+    public String getPais() {
+        return pais;
+    }
 
-        public String getPassword() {
-            return password;
-        }
+    public void setPais(String pais) {
+        this.pais = pais;
+    }
 
-        public void setPassword(String password
-        ) {
-            this.password = password;
-        }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password){
+        this.password = password;
+    }
 }
 

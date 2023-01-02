@@ -21,15 +21,12 @@ public class SplashScreenActivity extends AppCompatActivity {
     private static int SPLASH_TIEMPO=2000;
     private static final String SHARED_PREF_NAME = "datosLogIn";
     private static final String KEY_NOMBRE = "nombre";
-    //private static final String KEY_ACTIVO = "activo";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
         sharedPref = getSharedPreferences(SHARED_PREF_NAME,Context.MODE_PRIVATE);
-        //Boolean activo = sharedPref.getBoolean(KEY_ACTIVO,false);
         nombre = sharedPref.getString(KEY_NOMBRE,null);
 
         new Handler().postDelayed(new Runnable() {
